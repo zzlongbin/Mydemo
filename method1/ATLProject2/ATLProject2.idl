@@ -1,0 +1,43 @@
+﻿// ATLProject2.idl: ATLProject2 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 生成类型库(ATLProject2.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include <string>
+
+[
+	object,
+	uuid(fd987547-daca-4bae-b790-06c9a454739b),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IATLSimpleObject : IDispatch
+{
+	[id(1)] HRESULT OpenSerial([ref] BSTR *COM );
+	[id(2)] HRESULT CloseSerial();
+	[id(3)] HRESULT WriteSerial([in] BSTR* WriteData, [in] LONG len);
+	[id(4)] HRESULT ReadSerial([out] BSTR* ReadData);
+
+
+};
+[
+	uuid(4310cc46-00df-46b1-a392-0478ff9a4ef0),
+	version(1.0),
+]
+library ATLProject2Lib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(5045295a-2ab7-438d-97a7-4fbf0d1134a6)
+	]
+	coclass ATLSimpleObject
+	{
+		[default] interface IATLSimpleObject;
+	};
+};
+
+import "shobjidl.idl";
